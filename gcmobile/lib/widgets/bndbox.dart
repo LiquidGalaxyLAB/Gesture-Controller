@@ -43,7 +43,7 @@ class BndBox extends StatelessWidget {
                 child: Text(
                   "● ${k["part"]}",
                   style: TextStyle(
-                    color: Color.fromRGBO(37, 213, 253, 1.0),
+                    color: Colors.red,
                     fontSize: 12.0,
                   ),
                 ),
