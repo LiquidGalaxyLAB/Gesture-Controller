@@ -5,13 +5,19 @@ const socketio = require('socket.io')(http)
 const port = 8080
 
 app.get('/', (req,res)=>{
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
   res.send('Root route.')
 })
 
 socketio.on("connection", (userSocket) => {
-  userSocket.on("send_message", (data) => {
-    userSocket.broadcast.emit("receive_message",data)
-  })
+    console.log("Client connected!")
+    userSocket.on("event", (data) => {
+        console.log(data)
+    })
 })
 
-app.listen(port,() => console.log(`GC Server listening on port ${port}`))
+
+http.listen(port,() => console.log(`GC Server listening on port ${port}`))
