@@ -17,6 +17,22 @@ socketio.on("connection", (userSocket) => {
     userSocket.on("event", (data) => {
         console.log(data)
     })
+
+    userSocket.on("move", (data) => {
+        console.log(data)
+    })
+
+    userSocket.on("rotate", (data) => {
+        console.log(data)
+    })
+
+    userSocket.on("zoom", (data) => {
+        console.log(data)
+    })
+    
+    userSocket.on("planet", (data) => {
+        console.log(data)
+    })
 })
 
 
