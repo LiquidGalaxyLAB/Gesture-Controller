@@ -14,24 +14,20 @@ app.get('/', (req,res)=>{
 
 socketio.on("connection", (userSocket) => {
     console.log("Client connected!")
-    userSocket.on("event", (data) => {
-        console.log(data)
-    })
-
     userSocket.on("move", (data) => {
-        console.log(data)
+        console.log('move ->', data)
     })
 
     userSocket.on("rotate", (data) => {
-        console.log(data)
+        console.log('rotate ->', data)
     })
 
     userSocket.on("zoom", (data) => {
-        console.log(data)
+        console.log('zoom ->', data)
     })
-    
+
     userSocket.on("planet", (data) => {
-        console.log(data)
+        console.log('change planet')
     })
 })
 
