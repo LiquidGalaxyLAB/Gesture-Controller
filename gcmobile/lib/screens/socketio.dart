@@ -22,9 +22,61 @@ class SocketIoScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton(
+                    child: Text('Move North'),
+                    onPressed: () => socketIo.sendMessage("move", '{"direction":"N", "value":"1"}'),
+                  ),
+                  FlatButton(
+                    child: Text('Move South'),
+                    onPressed: () => socketIo.sendMessage("move", '{"direction":"S", "value":"1"}'),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton(
+                    child: Text('Move West'),
+                    onPressed: () => socketIo.sendMessage("move", '{"direction":"W", "value":"1"}'),
+                  ),
+                  FlatButton(
+                    child: Text('Move East'),
+                    onPressed: () => socketIo.sendMessage("move", '{"direction":"E", "value":"1"}'),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton(
+                    child: Text('Rotate Left'),
+                    onPressed: () => socketIo.sendMessage("rotate", '{"direction":"L", "value":"1"}'),
+                  ),
+                  FlatButton(
+                    child: Text('Rotate Right'),
+                    onPressed: () => socketIo.sendMessage("rotate", '{"direction":"R", "value":"1"}'),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  FlatButton(
+                    child: Text('Zoom In'),
+                    onPressed: () => socketIo.sendMessage("zoom", '{"direction":"I", "value":"1"}'),
+                  ),
+                  FlatButton(
+                    child: Text('Zoom out'),
+                    onPressed: () => socketIo.sendMessage("zoom", '{"direction":"O", "value":"1"}'),
+                  ),
+                ],
+              ),
               FlatButton(
-                child: Text('Send event test'),
-                onPressed: () => socketIo.sendMessage("event", '{"message":"blablabla"}'),
+                child: Text('Change Planet'),
+                onPressed: () => socketIo.sendMessage("planet", '{}'),
               ),
               FlatButton(
                 child: Text('Disconnect'),
