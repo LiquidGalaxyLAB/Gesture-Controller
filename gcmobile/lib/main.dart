@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // print('\x1B[93mPINTO');
     return MaterialApp(
       title: 'Gesture Controller',
       theme: ThemeData(
