@@ -3,10 +3,10 @@ import 'package:camera/camera.dart';
 
 import 'package:gcmobile/screens/posenet.dart';
 import 'package:gcmobile/screens/socketio.dart';
+import 'package:gcmobile/screens/config.dart';
 
 class HomeScreen extends StatelessWidget {
-  List<CameraDescription> cameras;
-
+  final List<CameraDescription> cameras;
   HomeScreen(this.cameras);
 
   Widget build(BuildContext context){
@@ -20,8 +20,12 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PosenetScreen(cameras))),
               ),
               RaisedButton(
-                child: Text('Socket.io'),
+                child: Text('Controller'),
                 onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SocketIoScreen())),
+              ),
+              RaisedButton(
+                child: Text('Configs'),
+                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigScreen())),
               ),
             ],
           ),
