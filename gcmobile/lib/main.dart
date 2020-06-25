@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:gcmobile/services/sockets.dart';
 import 'screens/home.dart';
 
 List<CameraDescription> cameras;

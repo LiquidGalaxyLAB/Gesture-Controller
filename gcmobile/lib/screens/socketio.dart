@@ -66,10 +66,6 @@ class SocketIoScreen extends StatelessWidget {
                 child: Text('Change Planet'),
                 onPressed: () => Socket.send("planet", '{}'),
               ),
-              FlatButton(
-                child: Text('Disconnect'),
-                onPressed: () => Socket.close(),
-              ),
             ],
           )
         )
