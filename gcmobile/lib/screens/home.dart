@@ -15,17 +15,26 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              RaisedButton(
-                child: Text('PoseNet'),
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PosenetScreen(cameras))),
+              Container(
+                width: 200,
+                child: RaisedButton(
+                  child: Text('PoseNet'),
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PosenetScreen(cameras))),
+                ),
               ),
-              RaisedButton(
-                child: Text('Controller'),
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SocketIoScreen())),
+              Container(
+                width: 200,
+                child: RaisedButton(
+                  child: Text('Controller'),
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SocketIoScreen())),
+                ),
               ),
-              RaisedButton(
-                child: Text('Configs'),
-                onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigScreen())),
+              Container(
+                width: 200,
+                child: RaisedButton(
+                  child: Text('Configs'),
+                  onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigScreen())),
+                ),
               ),
             ],
           ),
