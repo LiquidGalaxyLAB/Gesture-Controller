@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:tflite/tflite.dart';
+import 'package:gcmobile/services/posenet.dart';
 import 'dart:math' as math;
 
-typedef void Callback(List<dynamic> list, int h, int w);
+typedef void Callback(List<dynamic> list);
 
 class Camera extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -17,7 +17,8 @@ class Camera extends StatefulWidget {
 
 class _CameraState extends State<Camera> {
   CameraController controller;
-  bool isDetecting = false;
+  Map<String,bool> isDetecting = {'value': false};
+  Posenet posenet = new Posenet();
 
   @override
   void initState() {
@@ -36,27 +37,9 @@ class _CameraState extends State<Camera> {
         }
         setState(() {});
 
-        controller.startImageStream((CameraImage img) {
-          if (!isDetecting) {
-            isDetecting = true;
-            int startTime = new DateTime.now().millisecondsSinceEpoch;
-            Tflite.runPoseNetOnFrame(
-              bytesList: img.planes.map((plane) {
-                return plane.bytes;
-              }).toList(),
-              imageHeight: img.height,
-              imageWidth: img.width,
-              numResults: 2,
-            ).then((recognitions) {
-              int endTime = new DateTime.now().millisecondsSinceEpoch;
-              print("Detection took ${endTime - startTime}");
-
-              widget.setRecognitions(recognitions, img.height, img.width);
-
-              isDetecting = false;
-            });
-          }
-        });
+        controller.startImageStream((CameraImage img) =>
+          posenet.runPosenet(isDetecting, img, widget.setRecognitions)
+        );
       });
     }
   }

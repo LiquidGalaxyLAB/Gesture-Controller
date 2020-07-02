@@ -3,6 +3,7 @@ import 'package:camera/camera.dart';
 
 import 'package:gcmobile/widgets/camera.dart';
 import 'package:gcmobile/services/classifier.dart';
+import 'package:gcmobile/services/posenet.dart';
 
 
 class PosenetScreen extends StatefulWidget {
@@ -16,9 +17,10 @@ class PosenetScreen extends StatefulWidget {
 
 class _PosenetScreenState extends State<PosenetScreen>{
   Classifier classifier = new Classifier();
+  Posenet posenet = new Posenet();
   var data;
 
-  setRecognitions(recognitions, imageHeight, imageWidth) async{
+  setRecognitions(recognitions) async{
     if(recognitions.isNotEmpty){
       data = classifier.flattenInputs(recognitions);
       data = await classifier.classify(data);
@@ -33,7 +35,7 @@ class _PosenetScreenState extends State<PosenetScreen>{
 
   @override
   Widget build(BuildContext context) {
-    classifier.loadModel();
+    posenet.loadPosenetModel();
     return Scaffold(
       body: Camera(
         widget.cameras,

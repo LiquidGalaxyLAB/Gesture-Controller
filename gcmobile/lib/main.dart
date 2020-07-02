@@ -17,18 +17,9 @@ void main() async {
   runApp(MyApp());
 }
 
-recordModel(){
-  Timer(new Duration(seconds: 5), (){
-    print('ROLA');
-  });
-}
-
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // recordModel();
-    // print('\x1B[93mPINTO');
     return MaterialApp(
       title: 'Gesture Controller',
       theme: ThemeData(
