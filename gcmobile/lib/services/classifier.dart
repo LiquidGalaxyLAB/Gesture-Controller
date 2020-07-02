@@ -8,6 +8,7 @@ class Classifier{
     List<double> flatten = [];
     try{
       List<dynamic> data = inputs[0]['keypoints'].values.toList();
+      data = data.sublist(5,10);
       data.forEach((e) {
         flatten.add(e['x']*1000/1280);
         flatten.add(e['y']*1000/720);
