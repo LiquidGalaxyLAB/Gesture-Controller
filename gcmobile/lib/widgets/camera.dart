@@ -37,6 +37,8 @@ class _CameraState extends State<Camera> {
         setState(() {});
 
         controller.startImageStream((CameraImage img) {
+          // print('IMG HEIGHT: ' + img.height.toString());
+          // print('IMG WIDTH: ' + img.width.toString());
           if (!isDetecting) {
             isDetecting = true;
             int startTime = new DateTime.now().millisecondsSinceEpoch;

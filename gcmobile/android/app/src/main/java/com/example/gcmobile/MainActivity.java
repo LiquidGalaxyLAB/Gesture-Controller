@@ -55,7 +55,7 @@ public class MainActivity extends FlutterActivity {
   Integer comparePose(ArrayList<Double> input_data){
     float max = 0;
     int result = 0;
-    float floatArray[] = new float[34];
+    float floatArray[] = new float[input_data.size()];
     for(int i = 0;i<input_data.size();i++)
       floatArray[i] = (float) input_data.get(i).floatValue();
 
