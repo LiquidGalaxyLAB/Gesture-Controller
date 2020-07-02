@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:tflite/tflite.dart';
 
 import 'package:gcmobile/widgets/camera.dart';
 import 'package:gcmobile/services/classifier.dart';
-// import 'package:gcmobile/widgets/bndbox.dart';
 
 
 class PosenetScreen extends StatefulWidget {
@@ -27,12 +25,6 @@ class _PosenetScreenState extends State<PosenetScreen>{
       classifier.handleResult(data);
     }
   }
-  
-  loadModel() async{
-    var res = await Tflite.loadModel(
-      model: "assets/posenet_mv1_075_float_from_checkpoints.tflite");
-    print(res);
-  }
 
   @override
   void initState(){
@@ -41,7 +33,7 @@ class _PosenetScreenState extends State<PosenetScreen>{
 
   @override
   Widget build(BuildContext context) {
-    loadModel();
+    classifier.loadModel();
     return Scaffold(
       body: Camera(
         widget.cameras,

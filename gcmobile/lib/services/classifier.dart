@@ -1,8 +1,15 @@
 import 'package:flutter/services.dart';
 import 'package:gcmobile/utils/outputs.dart';
 import 'package:gcmobile/services/sockets.dart';
+import 'package:tflite/tflite.dart';
 
 class Classifier{
+
+  void loadModel() async{
+    var res = await Tflite.loadModel(
+      model: "assets/posenet_mv1_075_float_from_checkpoints.tflite");
+    print(res);
+  }
 
   List<dynamic> flattenInputs(inputs){
     List<double> flatten = [];
