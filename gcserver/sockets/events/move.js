@@ -1,6 +1,6 @@
 const exec = require('child_process').exec;
 
-function move(data){
+function move(data, controller){
   const scripts = {
     'move_N':`${__basedir}/scripts/move_north.sh`,
     'move_S':`${__basedir}/scripts/move_south.sh`,
@@ -9,7 +9,17 @@ function move(data){
   }
 
   console.log('move ->', data)
-  exec(`bash ${scripts[`move_${data.direction}`]}`)
+  // console.log(controller)
+  if(controller.state!=data.direction){
+    exec(`bash ${scripts[`move_${data.direction}`]}`)
+    controller.state = data.direction
+  } else if(controller.timer == false){
+    controller.timer = true
+    setTimeout(()=>{
+      exec(`bash ${scripts[`move_${data.direction}`]}`)
+      controller.timer = false
+    },1000)
+  }
 }
 
 module.exports = {

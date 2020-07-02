@@ -1,5 +1,11 @@
 const exec = require('child_process').exec;
 const {move} = require('./events/move.js')
+const fs = require('fs')
+
+var controller = {
+  state: 'idle',
+  timer: false
+}
 
 function connection(userSocket){
   const scripts = {
@@ -8,7 +14,7 @@ function connection(userSocket){
 
   console.log("Client connected!")
 
-  userSocket.on("move", move)
+  userSocket.on("move", (data) => move(data, controller))
 
   userSocket.on("rotate", (data) => {
       console.log('rotate ->', data)
@@ -21,8 +27,14 @@ function connection(userSocket){
   userSocket.on("planet", (data) => {
       console.log('change planet')
   })
+
+  userSocket.on("record", (data) => {
+      console.log('Record recieved...')
+      fs.writeFile('outputs/myjsonfile.json', JSON.stringify(data), 'utf8', ()=>{});
+  })
 }
 
 module.exports = {
-  connection: connection
+  connection: connection,
+  controller: controller
 }
