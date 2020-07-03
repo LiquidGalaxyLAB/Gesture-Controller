@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'screens/home.dart';
-import 'dart:async';
 import 'package:gcmobile/services/sockets.dart';
 
 List<CameraDescription> cameras;
