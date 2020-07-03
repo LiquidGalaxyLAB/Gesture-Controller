@@ -9,9 +9,8 @@ function move(data, controller){
   }
 
   console.log('move ->', data)
-  // console.log(controller)
   if(controller.state!=data.direction){
-    exec(`bash ${scripts[`move_${data.direction}`]}`)
+    exec(`bash ${scripts[`move_${data.direction}`]} ${MASTER_IP}`)
     controller.state = data.direction
   } else if(controller.timer == false){
     controller.timer = true

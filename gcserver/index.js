@@ -2,10 +2,13 @@ const app = require('express')()
 const http = require('http').createServer(app)
 const socketio = require('socket.io')(http)
 const {connection} = require('./sockets/index.js')
+const dotenv = require('dotenv');
 
-const port = 8080
+dotenv.config();
+const port = process.env.PORT;
 
 global.__basedir = __dirname;
+global.MASTER_IP = process.env.MASTER_IP;
 
 app.get('/', (req,res)=>{
   res.header("Access-Control-Allow-Origin", "*");
