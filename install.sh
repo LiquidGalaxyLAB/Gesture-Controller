@@ -12,10 +12,14 @@ npm install
 echo Installation finished...
 echo
 echo
-echo -n Server port (8080):
+echo -n "Server port (8080):"
 read SERVER_PORT
-echo -n Master IP (localhost):
+echo -n "Master IP (localhost):"
 read MASTER_IP
+if [ -z $MASTER_IP ] || [ $MASTER_IP = 'localhost' ]; then
+  MASTER_IP='localhost'
+fi
+echo -n "" > .env
 echo SERVER_PORT=$SERVER_PORT >> .env
 echo MASTER_IP=$MASTER_IP >> .env
 
