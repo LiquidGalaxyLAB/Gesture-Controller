@@ -5,7 +5,7 @@ const {connection} = require('./sockets/index.js')
 const dotenv = require('dotenv');
 
 dotenv.config();
-const port = process.env.PORT;
+const port = process.env.SERVER_PORT;
 
 global.__basedir = __dirname;
 global.MASTER_IP = process.env.MASTER_IP;
