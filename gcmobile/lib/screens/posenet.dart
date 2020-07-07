@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
 import 'package:gcmobile/widgets/camera.dart';
+import 'package:gcmobile/screens/config.dart';
 import 'package:gcmobile/services/classifier.dart';
 import 'package:gcmobile/services/posenet.dart';
 
@@ -37,10 +38,25 @@ class _PosenetScreenState extends State<PosenetScreen>{
   Widget build(BuildContext context) {
     posenet.loadPosenetModel();
     return Scaffold(
-      body: Camera(
-        widget.cameras,
-        setRecognitions,
-      ),
+      body: Stack(
+        children: <Widget>[
+          Camera(
+            widget.cameras,
+            setRecognitions,
+          ),
+          Positioned(
+            top: 50,
+            child: MaterialButton(
+              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigScreen())),
+              color: Color.fromRGBO(0, 0, 0, 0.6),
+              textColor: Colors.white,
+              child: Icon(Icons.settings, size: 17),
+              padding: EdgeInsets.all(14),
+              shape: CircleBorder(),
+            ),
+          )
+        ],
+      )
     );
   }
 }

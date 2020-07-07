@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'screens/home.dart';
+import 'screens/posenet.dart';
 import 'package:gcmobile/services/sockets.dart';
 
 List<CameraDescription> cameras;
@@ -9,7 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   try{
     cameras = await availableCameras();
-    await Socket.initialize('192.168.0.152:8080');
+    // await Socket.initialize('192.168.0.152:8080');
   } on CameraException catch(e){
     print('Error: $e.code\nError Message: $e.message');
   }
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(cameras),
+      home: PosenetScreen(cameras),
     );
   }
 }
