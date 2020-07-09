@@ -3,14 +3,17 @@ import 'package:camera/camera.dart';
 import 'screens/home.dart';
 import 'screens/posenet.dart';
 import 'package:gcmobile/services/sockets.dart';
+import 'package:gcmobile/services/posenet.dart';
 
 List<CameraDescription> cameras;
 
 void main() async {
+  Posenet posenet = new Posenet();
   WidgetsFlutterBinding.ensureInitialized();
   try{
     cameras = await availableCameras();
-    // await Socket.initialize('192.168.0.152:8080');
+    posenet.loadPosenetModel();
+    await Socket.initialize('192.168.0.152:8080');
   } on CameraException catch(e){
     print('Error: $e.code\nError Message: $e.message');
   }

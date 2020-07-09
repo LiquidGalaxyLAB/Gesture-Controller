@@ -35,11 +35,11 @@ class _CameraState extends State<Camera> {
         if (!mounted) {
           return;
         }
-        setState(() {});
 
-        controller.startImageStream((CameraImage img) =>
-          posenet.runPosenet(isDetecting, img, widget.setRecognitions)
-        );
+        controller.startImageStream((CameraImage img) async {
+          await posenet.runPosenet(isDetecting, img, widget.setRecognitions);
+          setState(() {});
+        });
       });
     }
   }

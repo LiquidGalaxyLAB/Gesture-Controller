@@ -36,7 +36,6 @@ class _PosenetScreenState extends State<PosenetScreen>{
 
   @override
   Widget build(BuildContext context) {
-    posenet.loadPosenetModel();
     return Scaffold(
       body: Stack(
         children: <Widget>[

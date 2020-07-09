@@ -8,7 +8,7 @@ class Posenet{
     print(res);
   }
 
-  void runPosenet(isDetecting, CameraImage img, callback) async{
+  Future<void> runPosenet(isDetecting, CameraImage img, callback) async{
     if (!isDetecting['value']) {
       isDetecting['value'] = true;
       int startTime = new DateTime.now().millisecondsSinceEpoch;
