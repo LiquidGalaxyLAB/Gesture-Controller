@@ -3,7 +3,7 @@ import 'package:camera/camera.dart';
 import 'package:gcmobile/services/posenet.dart';
 import 'dart:math' as math;
 
-typedef void Callback(List<dynamic> list);
+typedef void Callback(List<dynamic> list, int height, int width);
 
 class Camera extends StatefulWidget {
   final List<CameraDescription> cameras;

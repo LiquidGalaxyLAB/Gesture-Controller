@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'dart:math' as math;
 
 import 'package:gcmobile/widgets/camera.dart';
+import 'package:gcmobile/widgets/bndbox.dart';
 import 'package:gcmobile/screens/config.dart';
 import 'package:gcmobile/services/classifier.dart';
 import 'package:gcmobile/services/posenet.dart';
+import 'package:gcmobile/services/options.dart';
 
 
 class PosenetScreen extends StatefulWidget {
@@ -20,13 +23,21 @@ class _PosenetScreenState extends State<PosenetScreen>{
   Classifier classifier = new Classifier();
   Posenet posenet = new Posenet();
   var data;
+  int _imageHeight = 0;
+  int _imageWidth = 0;
+  List<dynamic> results = [];
 
-  setRecognitions(recognitions) async{
+  setRecognitions(recognitions, imageHeight, imageWidth) async{
     if(recognitions.isNotEmpty){
       data = classifier.flattenInputs(recognitions);
       data = await classifier.classify(data);
       classifier.handleResult(data);
     }
+    setState(() {
+      _imageHeight = imageHeight;
+      _imageWidth = imageWidth;
+      results = recognitions;
+    });
   }
 
   @override
@@ -53,53 +64,27 @@ class _PosenetScreenState extends State<PosenetScreen>{
               padding: EdgeInsets.all(14),
               shape: CircleBorder(),
             ),
-          )
+          ),
+          _keypointsRender()
         ],
       )
     );
   }
 
-  // List<Widget> _renderKeypoints() {
-  //     var lists = <Widget>[];
-  //     results.forEach((re) {
-  //       var list = re["keypoints"].values.map<Widget>((k) {
-  //         var _x = k["x"];
-  //         var _y = k["y"];
-  //         var scaleW, scaleH, x, y;
-  //
-  //         if (screenH / screenW > previewH / previewW) {
-  //           scaleW = screenH / previewH * previewW;
-  //           scaleH = screenH;
-  //           var difW = (scaleW - screenW) / scaleW;
-  //           x = (_x - difW / 2) * scaleW;
-  //           y = _y * scaleH;
-  //         } else {
-  //           scaleH = screenW / previewW * previewH;
-  //           scaleW = screenW;
-  //           var difH = (scaleH - screenH) / scaleH;
-  //           x = _x * scaleW;
-  //           y = (_y - difH / 2) * scaleH;
-  //         }
-  //           return Positioned(
-  //             left: x - 6,
-  //             top: y - 6,
-  //             width: 100,
-  //             height: 12,
-  //             child: Container(
-  //               child: Text(
-  //                 "● ${k["part"]}",
-  //                 style: TextStyle(
-  //                   color: Color.fromRGBO(37, 213, 253, 1.0),
-  //                   fontSize: 12.0,
-  //                 ),
-  //               ),
-  //             ),
-  //           );
-  //       }).toList();
-  //
-  //       lists..addAll(list);
-  //     });
-  //
-  //     return lists;
-  //   }
+  _keypointsRender(){
+    Size screen = MediaQuery.of(context).size;
+    if(Options.renderKeypoints)
+      return BndBox(
+        results == null ? [] : results,
+        math.max(_imageHeight, _imageWidth),
+        math.min(_imageHeight, _imageWidth),
+        screen.height,
+        screen.width,
+        data
+      );
+    else
+     return Container(
+       width: 0,
+     );
+  }
 }

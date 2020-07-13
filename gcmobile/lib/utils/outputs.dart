@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 Map<int, String> strings = {
   0: 'IDLE',
   1: 'NORTH',
@@ -6,12 +8,20 @@ Map<int, String> strings = {
   4: 'EAST'
 };
 
-Map<int, String> colors = {
+Map<int, String> terminalColor = {
   0: '\x1B[90m',
   1: '\x1B[94m',
   2: '\x1B[93m',
   3: '\x1B[95m',
   4: '\x1B[96m'
+};
+
+Map<int, Color> appColor = {
+  0: Colors.black45,
+  1: Colors.blue,
+  2: Colors.amber,
+  3: Colors.pink,
+  4: Colors.green
 };
 
 Map<int, dynamic> sockets = {

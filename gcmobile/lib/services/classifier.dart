@@ -28,7 +28,7 @@ class Classifier{
   }
 
   void handleResult(result){
-    String color = colors[result];
+    String color = terminalColor[result];
     String string = strings[result];
     String event = sockets[result]['event'];
     String data = sockets[result]['data'];

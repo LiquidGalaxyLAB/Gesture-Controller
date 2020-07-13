@@ -23,7 +23,7 @@ class Posenet{
         int endTime = new DateTime.now().millisecondsSinceEpoch;
         print("Detection took ${endTime - startTime}");
 
-        callback(recognitions);
+        callback(recognitions, img.height, img.width);
 
         isDetecting['value'] = false;
       });
