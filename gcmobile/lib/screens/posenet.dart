@@ -8,6 +8,7 @@ import 'package:gcmobile/screens/config.dart';
 import 'package:gcmobile/services/classifier.dart';
 import 'package:gcmobile/services/posenet.dart';
 import 'package:gcmobile/services/options.dart';
+import 'package:gcmobile/services/router.dart';
 
 
 class PosenetScreen extends StatefulWidget {
@@ -47,13 +48,11 @@ class _PosenetScreenState extends State<PosenetScreen>{
 
   @override
   Widget build(BuildContext context) {
+    Router.state='posenet';
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          Camera(
-            widget.cameras,
-            setRecognitions,
-          ),
+          _camera(),
           Positioned(
             top: 50,
             child: MaterialButton(
@@ -69,6 +68,16 @@ class _PosenetScreenState extends State<PosenetScreen>{
         ],
       )
     );
+  }
+
+  _camera(){
+    if(Router.state=='posenet')
+      return Camera(
+        widget.cameras,
+        setRecognitions,
+      );
+    else
+      return Container(width: 0,);
   }
 
   _keypointsRender(){
