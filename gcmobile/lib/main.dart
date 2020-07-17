@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'screens/home.dart';
 import 'screens/posenet.dart';
 import 'package:gcmobile/services/sockets.dart';
 import 'package:gcmobile/services/posenet.dart';
