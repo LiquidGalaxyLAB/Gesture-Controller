@@ -1,7 +1,6 @@
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:gcmobile/utils/voice/commands.dart';
-import 'package:gcmobile/utils/outputs.dart';
 
 class VoiceCommands{
   static SpeechToText controller = SpeechToText();
@@ -11,7 +10,6 @@ class VoiceCommands{
   }
 
   listen(){
-    // print(controller.isListening);
     if(controller.isListening)
      return null;
     else
@@ -30,7 +28,6 @@ class VoiceCommands{
   _onResult(SpeechRecognitionResult result){
     String _str = result.recognizedWords.toLowerCase();
     String _sub = '';
-    // print(commands);
     if(result.finalResult){
       int commandIndex = checkCommands(_str);
       print(result.recognizedWords);
