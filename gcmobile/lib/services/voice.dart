@@ -29,27 +29,29 @@ class VoiceCommands{
 
   _onResult(SpeechRecognitionResult result){
     String str = result.recognizedWords.toLowerCase();
-    int cIndex, cValue, command;
-    var cOption;
+    int cIndex;
+    String socketData;
+    var cOption, command, cValue, socketEvent;
     if(result.finalResult){
       print(result.recognizedWords);
-      cIndex = findCommands(str);
+      command = findCommands(str);
+      cIndex = command['index'];
+      cValue = command['value'];
       if(!cIndex.isNaN){
-        cValue = commands[cIndex]['value'];
-        // print(commands[cIndex]['variations'][0]);
-        str = str.split(commands[cIndex]['variations'][0])[1];
-        cOption = findOptions(str, cIndex);
-        command = cOption ??
-        print(cOption);
-        print(cValue + cOption);
-        // var finalCommand = commands[commandIndex]['value'] + commandOption;
-        // finalCommand = convertCommand(finalCommand);
-        // print(finalCommand);
-        // finalCommand = sockets[finalCommand];
-        // Socket.send(sockets['event'], sockets['data']);
+        command = commands[cIndex]['value'];
+        str = str.split(cValue)[1].replaceFirst(' ', '');
+        if(command < 9){
+          cOption = findOptions(str, cIndex);
+          command = command + cOption;
+        }
+        socketEvent = sockets[command]['event'];
+        socketData = sockets[command]['data'];
+        socketData = socketData.replaceFirst('%location', str);
+        print(socketData);
+        print(terminalColor[command] + strings[command] + '\x1B[97m');
+        Socket.send(socketEvent, socketData);
       }
     }
-    print('\x1B[33mCOMMAND ' + commands[cIndex]['value'] + '\x1B[97m');
   }
 
   _onStatus(String status){
@@ -61,7 +63,10 @@ class VoiceCommands{
       var c = commands[i];
       for(String v in c['variations'])
         if(str.contains(v))
-          return i;
+          return {
+            'index': i,
+            'value': v
+          };
     }
     return null;
   }
