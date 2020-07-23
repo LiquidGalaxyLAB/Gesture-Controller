@@ -1,13 +1,13 @@
 Map<String, dynamic> move = {
-  'value': 'move',
+  'value': 1,
   'variations': [
     'move',
   ],
   'options': [
     _north,
      _south,
-    _east,
-    _west
+     _west,
+    _east
   ]
 };
 

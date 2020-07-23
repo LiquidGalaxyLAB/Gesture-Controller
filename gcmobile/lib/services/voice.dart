@@ -1,6 +1,8 @@
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:gcmobile/utils/voice/commands.dart';
+import 'package:gcmobile/utils/outputs.dart';
+import 'package:gcmobile/services/sockets.dart';
 
 class VoiceCommands{
   static SpeechToText controller = SpeechToText();
@@ -26,25 +28,35 @@ class VoiceCommands{
   }
 
   _onResult(SpeechRecognitionResult result){
-    String _str = result.recognizedWords.toLowerCase();
-    String _sub = '';
+    String str = result.recognizedWords.toLowerCase();
+    int cIndex, cValue, command;
+    var cOption;
     if(result.finalResult){
-      int commandIndex = checkCommands(_str);
       print(result.recognizedWords);
-      if(!commandIndex.isNaN){
-        print('\x1B[33mCOMMAND ' + commands[commandIndex]['value'] + '\x1B[97m');
-        _sub = _str.split(commands[commandIndex]['value'])[1];
-        String commandOption = checkOptions(_sub, commandIndex);
-        print(commandOption);
+      cIndex = findCommands(str);
+      if(!cIndex.isNaN){
+        cValue = commands[cIndex]['value'];
+        // print(commands[cIndex]['variations'][0]);
+        str = str.split(commands[cIndex]['variations'][0])[1];
+        cOption = findOptions(str, cIndex);
+        command = cOption ??
+        print(cOption);
+        print(cValue + cOption);
+        // var finalCommand = commands[commandIndex]['value'] + commandOption;
+        // finalCommand = convertCommand(finalCommand);
+        // print(finalCommand);
+        // finalCommand = sockets[finalCommand];
+        // Socket.send(sockets['event'], sockets['data']);
       }
     }
+    print('\x1B[33mCOMMAND ' + commands[cIndex]['value'] + '\x1B[97m');
   }
 
   _onStatus(String status){
     // print(status);
   }
 
-  checkCommands(String str){
+  findCommands(String str){
     for(int i = 0; i < commands.length; i++){
       var c = commands[i];
       for(String v in c['variations'])
@@ -54,14 +66,26 @@ class VoiceCommands{
     return null;
   }
 
-  checkOptions(String str, int index){
+  findOptions(String str, int index){
     var command = commands[index];
+    if(index == 4)
+      return str;
     for(int i = 0; i < command['options'].length; i++){
       var option = command['options'][i];
       check(var value) => str.contains(value);
       if(option.any(check))
-        return option[0];
+        return i;
     }
+  }
+
+  convertCommand(String str){
+    str = str.toUpperCase();
+    print(str);
+    strings.forEach((index, value) {
+      if(value == str)
+        return index;
+      return null;
+    });
   }
 
 }

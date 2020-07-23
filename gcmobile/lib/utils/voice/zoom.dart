@@ -1,5 +1,5 @@
 Map<String, dynamic> zoom = {
-  'value': 'zoom',
+  'value': 7,
   'variations': [
     'zoom',
   ],

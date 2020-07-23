@@ -1,5 +1,5 @@
 Map<String, dynamic> rotate = {
-  'value': 'rotate',
+  'value': 5,
   'variations': [
     'rotate',
   ],

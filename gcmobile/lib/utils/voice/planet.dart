@@ -1,5 +1,5 @@
 Map<String, dynamic> planet = {
-  'value': 'planet',
+  'value': 9,
   'variations': [
     'change planet',
   ],

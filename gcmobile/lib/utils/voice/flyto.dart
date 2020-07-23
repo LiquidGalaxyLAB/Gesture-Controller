@@ -1,5 +1,5 @@
 Map<String, dynamic> flyto = {
-  'value': 'flyto',
+  'value': 10,
   'variations': [
     'fly to',
     'fly',
