@@ -78,7 +78,7 @@ public class MainActivity extends FlutterActivity {
   }
 
   private MappedByteBuffer loadModelFile() throws IOException {
-    String MODEL_ASSETS_PATH = "model1.tflite";
+    String MODEL_ASSETS_PATH = "model.tflite";
     AssetFileDescriptor assetFileDescriptor = getAssets().openFd(MODEL_ASSETS_PATH) ;
     FileInputStream fileInputStream = new FileInputStream( assetFileDescriptor.getFileDescriptor() ) ;
     FileChannel fileChannel = fileInputStream.getChannel() ;
