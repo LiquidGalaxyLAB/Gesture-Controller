@@ -65,7 +65,7 @@ public class MainActivity extends FlutterActivity {
     //     i++;
     // }
     // System.out.println(floatArray);
-    float [][] output_datas= new float[1][5];
+    float [][] output_datas= new float[1][7];
     tflite.run(floatArray, output_datas);
 
     for(int i = 0; i < output_datas[0].length;i++){
