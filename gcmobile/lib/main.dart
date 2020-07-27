@@ -4,15 +4,18 @@ import 'screens/posenet.dart';
 import 'screens/home.dart';
 import 'package:gcmobile/services/sockets.dart';
 import 'package:gcmobile/services/posenet.dart';
+import 'package:gcmobile/services/voice.dart';
 
 List<CameraDescription> cameras;
 
 void main() async {
   Posenet posenet = new Posenet();
+  VoiceCommands voice = new VoiceCommands();
   WidgetsFlutterBinding.ensureInitialized();
   try{
     cameras = await availableCameras();
     posenet.loadPosenetModel();
+    voice.initialize();
     await Socket.initialize('192.168.0.152:8080');
   } on CameraException catch(e){
     print('Error: $e.code\nError Message: $e.message');

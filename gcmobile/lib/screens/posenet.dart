@@ -9,6 +9,7 @@ import 'package:gcmobile/services/classifier.dart';
 import 'package:gcmobile/services/posenet.dart';
 import 'package:gcmobile/services/options.dart';
 import 'package:gcmobile/services/router.dart';
+import 'package:gcmobile/services/voice.dart';
 
 
 class PosenetScreen extends StatefulWidget {
@@ -23,6 +24,7 @@ class PosenetScreen extends StatefulWidget {
 class _PosenetScreenState extends State<PosenetScreen>{
   Classifier classifier = new Classifier();
   Posenet posenet = new Posenet();
+  VoiceCommands voice = new VoiceCommands();
   var data;
   int _imageHeight = 0;
   int _imageWidth = 0;
@@ -43,6 +45,7 @@ class _PosenetScreenState extends State<PosenetScreen>{
 
   @override
   void initState(){
+    voice.startLoop();
     super.initState();
   }
 

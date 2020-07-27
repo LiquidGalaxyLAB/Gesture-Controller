@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:gcmobile/utils/voice/commands.dart';
 import 'package:gcmobile/utils/outputs.dart';
 import 'package:gcmobile/services/sockets.dart';
+import 'package:gcmobile/services/options.dart';
 
 class VoiceCommands{
   static SpeechToText controller = SpeechToText();
@@ -15,7 +18,19 @@ class VoiceCommands{
     if(controller.isListening)
      return null;
     else
-      controller.listen(onResult: _onResult, listenFor: Duration(seconds: 5));
+      controller.listen(onResult: _onResult, listenFor: Duration(seconds: 4));
+  }
+
+  startLoop(){
+    if(!Options.voiceCommands)
+      return;
+    controller.stop();
+    Timer.periodic(Duration(milliseconds: 500), (timer) {
+      if(!Options.voiceCommands)
+        timer.cancel();
+      else
+        listen();
+    });
   }
 
   stop(){
@@ -55,7 +70,7 @@ class VoiceCommands{
   }
 
   _onStatus(String status){
-    // print(status);
+    print(status);
   }
 
   findCommands(String str){
