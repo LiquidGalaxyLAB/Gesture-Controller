@@ -1,40 +1,21 @@
 const exec = require('child_process').exec;
-const {move} = require('./events/move.js')
 const fs = require('fs')
+const {move} = require('./events/move.js')
+const {rotate} = require('./events/rotate.js')
+const {zoom} = require('./events/zoom.js')
+const {flyto} = require('./events/flyto.js')
+const {planet} = require('./events/planet.js')
 
-var controller = {
-  state: 'idle',
-  timer: false
-}
 
 function connection(userSocket){
-  const scripts = {
-    'move_N':`${__basedir}/scripts/move_north.sh`
-  }
-
   console.log("Client connected!")
-
-  userSocket.on("move", (data) => move(data, controller))
-
-  userSocket.on("rotate", (data) => {
-      console.log('rotate ->', data)
-  })
-
-  userSocket.on("zoom", (data) => {
-      console.log('zoom ->', data)
-  })
-
-  userSocket.on("planet", (data) => {
-      console.log('change planet')
-  })
-
-  userSocket.on("record", (data) => {
-      console.log('Record recieved...')
-      fs.writeFile('outputs/myjsonfile.json', JSON.stringify(data), 'utf8', ()=>{});
-  })
+  userSocket.on("move", move)
+  userSocket.on("rotate", rotate)
+  userSocket.on("zoom", zoom)
+  userSocket.on("planet", planet)
+  userSocket.on("flyto", flyto)
 }
 
 module.exports = {
-  connection: connection,
-  controller: controller
+  connection: connection
 }
