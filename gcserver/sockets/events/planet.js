@@ -1,5 +1,5 @@
 const exec = require('child_process').exec;
-const {command} = require(`../../utils/commands`);
+const {query} = require(`../../utils/commands`);
 
 function planet(data){
   console.log('change planet ->', data)

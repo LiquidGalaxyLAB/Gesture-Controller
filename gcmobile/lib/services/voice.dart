@@ -88,7 +88,7 @@ class VoiceCommands{
 
   findOptions(String str, int index){
     var command = commands[index];
-    if(index == 4)
+    if(index >= 2)
       return str;
     for(int i = 0; i < command['options'].length; i++){
       var option = command['options'][i];

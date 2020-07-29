@@ -52,6 +52,6 @@ Map<int, dynamic> sockets = {
   6: {'event':'rotate','data':"{'direction':'R','value':'1'}"},
   7: {'event':'zoom','data':"{'direction':'I','value':'1'}"},
   8: {'event':'zoom','data':"{'direction':'O','value':'1'}"},
-  9: {'event':'planet','data':"{}"},
+  9: {'event':'planet','data':"{'direction': '%location'}, 'value: 1'"},
   10: {'event':'flyto','data':"{'direction': '%location'}, 'value: 1'"}
 };
