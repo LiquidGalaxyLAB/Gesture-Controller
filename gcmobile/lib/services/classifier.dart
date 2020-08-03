@@ -10,8 +10,8 @@ class Classifier{
       List<dynamic> data = inputs[0]['keypoints'].values.toList();
       data = data.sublist(5,11);
       data.forEach((e) {
-        flatten.add(e['x']*1000/1280);
-        flatten.add(e['y']*1000/720);
+        flatten.add(e['x']*1.3);
+        flatten.add(e['y']*1.15);
       });
     } catch(exception){
       print(exception);

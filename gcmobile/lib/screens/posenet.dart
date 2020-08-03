@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:math' as math;
 
-import 'package:gcmobile/widgets/camera.dart';
-import 'package:gcmobile/widgets/bndbox.dart';
+import 'package:gcmobile/screens/widgets/camera.dart';
+import 'package:gcmobile/screens/widgets/bndbox.dart';
 import 'package:gcmobile/screens/config.dart';
 import 'package:gcmobile/services/classifier.dart';
 import 'package:gcmobile/services/posenet.dart';
@@ -36,6 +36,8 @@ class _PosenetScreenState extends State<PosenetScreen>{
       data = await classifier.classify(data);
       classifier.handleResult(data);
     }
+    else
+      print('\x1B[97m');
     setState(() {
       _imageHeight = imageHeight;
       _imageWidth = imageWidth;

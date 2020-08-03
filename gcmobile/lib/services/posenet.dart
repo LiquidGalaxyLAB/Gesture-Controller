@@ -18,7 +18,9 @@ class Posenet{
         }).toList(),
         imageHeight: img.height,
         imageWidth: img.width,
-        numResults: 2,
+        numResults: 5,
+        rotation: -0
+
       ).then((recognitions) {
         int endTime = new DateTime.now().millisecondsSinceEpoch;
         print("Detection took ${endTime - startTime}");

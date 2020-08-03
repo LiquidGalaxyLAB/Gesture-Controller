@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter/services.dart';
 import 'package:gcmobile/services/posenet.dart';
+import 'package:image/image.dart' as image;
 import 'dart:math' as math;
 
 typedef void Callback(List<dynamic> list, int height, int width);
@@ -23,13 +25,17 @@ class _CameraState extends State<Camera> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
 
     if (widget.cameras == null || widget.cameras.length < 1) {
       print('No camera is found');
     } else {
       controller = new CameraController(
         widget.cameras[0],
-        ResolutionPreset.high,
+        ResolutionPreset.medium,
       );
       controller.initialize().then((_) {
         if (!mounted) {
@@ -37,6 +43,10 @@ class _CameraState extends State<Camera> {
         }
 
         controller.startImageStream((CameraImage img) async {
+          // print('H ' + img.height.toString());
+          // print('W ' + img.width.toString());
+          // print(img.planes[0].width);
+          // print(img.format.group);
           await posenet.runPosenet(isDetecting, img, widget.setRecognitions);
           setState(() {});
         });
@@ -46,6 +56,12 @@ class _CameraState extends State<Camera> {
 
   @override
   void dispose() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     controller?.dispose();
     super.dispose();
   }
