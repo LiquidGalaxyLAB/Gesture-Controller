@@ -8,29 +8,21 @@ import 'package:gcmobile/services/sockets.dart';
 import 'package:gcmobile/services/options.dart';
 
 class VoiceCommands{
-  static SpeechToText controller = SpeechToText();
+  static SpeechToText controller = new SpeechToText();
 
   initialize(){
     return controller.initialize(onStatus: _onStatus);
   }
 
   listen(){
-    if(controller.isListening)
-     return null;
-    else
-      controller.listen(onResult: _onResult, listenFor: Duration(seconds: 4));
-  }
-
-  startLoop(){
-    if(!Options.voiceCommands)
-      return;
-    controller.stop();
-    Timer.periodic(Duration(milliseconds: 500), (timer) {
-      if(!Options.voiceCommands)
-        timer.cancel();
-      else
-        listen();
-    });
+    if(Options.voiceCommands)
+      controller.listen(
+        onResult: _onResult,
+        listenFor: Duration(seconds: 10),
+        cancelOnError: true,
+        partialResults: true,
+        onDevice: true,
+        listenMode: ListenMode.confirmation);
   }
 
   stop(){
@@ -43,10 +35,10 @@ class VoiceCommands{
   }
 
   _onResult(SpeechRecognitionResult result){
-    String str = result.recognizedWords.toLowerCase();
+    var cOption, command, cValue, socketEvent;
     int cIndex;
     String socketData;
-    var cOption, command, cValue, socketEvent;
+    String str = result.recognizedWords.toLowerCase();
     if(result.finalResult){
       print(result.recognizedWords);
       command = findCommands(str);
@@ -69,8 +61,12 @@ class VoiceCommands{
     }
   }
 
-  _onStatus(String status){
+  _onStatus(String status) async{
     print(status);
+    if(status=="notListening"){
+      await new Future.delayed(const Duration(milliseconds : 500));
+      listen();
+    }
   }
 
   findCommands(String str){

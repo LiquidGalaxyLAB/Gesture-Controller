@@ -47,8 +47,8 @@ class _PosenetScreenState extends State<PosenetScreen>{
 
   @override
   void initState(){
-    voice.startLoop();
     super.initState();
+    voice.listen();
   }
 
   @override

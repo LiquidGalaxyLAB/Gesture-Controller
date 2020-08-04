@@ -15,7 +15,7 @@ void main() async {
   try{
     cameras = await availableCameras();
     posenet.loadPosenetModel();
-    voice.initialize();
+    await voice.initialize();
     await Socket.initialize('192.168.0.190:8080');
   } on CameraException catch(e){
     print('Error: $e.code\nError Message: $e.message');
