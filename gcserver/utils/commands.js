@@ -11,16 +11,25 @@ const map = {
   flyto: 'search='
 }
 
-function command(key){
+function command(key, laststate){
+  let command = ''
+  if(laststate != '')
+    command += `; xdotool keyup ${map[laststate]}`
+  if(key!='idle')
+    command += `; xdotool keydown ${map[key]}`
+  console.log(command)
   if(MASTER_IP != 'localhost')
-    return `ssh lg@${MASTER_IP} 'export DISPLAY=:0;xdotool key --delay 500 ${map[key]}'`
+    return `ssh lg@${MASTER_IP} 'export DISPLAY=:0 ${command}'`
   else
-    return `xdotool key --delay 500 ${map[key]}`
+    return `${keyup}; ${keydown}`
 }
 
-function query(operation, data){
+function query(operation, data, laststate){
+  let command = ''
+  if(laststate != '')
+    command += ` xdotool keyup ${map[laststate]};`
   if(MASTER_IP != 'localhost')
-    return `ssh lg@${MASTER_IP} 'export DISPLAY=:0;echo '${map[operation]+data}' > /tmp/query.txt'`
+    return `ssh lg@${MASTER_IP} 'export DISPLAY=:0;${command} echo '${map[operation]+data}' > /tmp/query.txt'`
   else
     return `echo '${map[operation]+data}' > /tmp/query.txt'`
 }

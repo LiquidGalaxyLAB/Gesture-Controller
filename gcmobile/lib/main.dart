@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'screens/posenet.dart';
+import 'screens/socketio.dart';
 import 'screens/config.dart';
 import 'package:gcmobile/services/sockets.dart';
 import 'package:gcmobile/services/posenet.dart';
@@ -16,7 +17,7 @@ void main() async {
     cameras = await availableCameras();
     posenet.loadPosenetModel();
     await voice.initialize();
-    await Socket.initialize('192.168.0.190:8080');
+    await Socket.initialize('192.168.0.152:8080');
   } on CameraException catch(e){
     print('Error: $e.code\nError Message: $e.message');
   }
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PosenetScreen(cameras),
+      home: SocketIoScreen(),
     );
   }
 }
