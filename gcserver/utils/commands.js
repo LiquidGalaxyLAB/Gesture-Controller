@@ -21,7 +21,7 @@ function command(key, laststate){
   if(MASTER_IP != 'localhost')
     return `ssh lg@${MASTER_IP} 'export DISPLAY=:0; ${command}'`
   else
-    return `${comamnd}`
+    return `${command}`
 }
 
 function query(operation, data, laststate){
