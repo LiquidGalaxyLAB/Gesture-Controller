@@ -14,14 +14,14 @@ const map = {
 function command(key, laststate){
   let command = ''
   if(laststate != '')
-    command += `; xdotool keyup ${map[laststate]}`
+    command += ` xdotool keyup ${map[laststate]};`
   if(key!='idle')
-    command += `; xdotool keydown ${map[key]}`
+    command += ` xdotool keydown ${map[key]};`
   console.log(command)
   if(MASTER_IP != 'localhost')
-    return `ssh lg@${MASTER_IP} 'export DISPLAY=:0 ${command}'`
+    return `ssh lg@${MASTER_IP} 'export DISPLAY=:0; ${command}'`
   else
-    return `${keyup}; ${keydown}`
+    return `${comamnd}`
 }
 
 function query(operation, data, laststate){
@@ -31,7 +31,7 @@ function query(operation, data, laststate){
   if(MASTER_IP != 'localhost')
     return `ssh lg@${MASTER_IP} 'export DISPLAY=:0;${command} echo '${map[operation]+data}' > /tmp/query.txt'`
   else
-    return `echo '${map[operation]+data}' > /tmp/query.txt'`
+    return `${command} echo '${map[operation]+data}' > /tmp/query.txt`
 }
 
 module.exports = {

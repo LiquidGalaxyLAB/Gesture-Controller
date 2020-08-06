@@ -3,10 +3,13 @@
 echo
 echo Gesture Controller Installation
 echo
+echo "Requeriments:"
+echo " * SSH"
+echo " * NodeJs (>= 10.x)"
+echo " * npm (>= 4.x)"
+echo
 echo [PRESS ENTER TO CONTINUE]
 read
-sudo apt install nodejs
-sudo apt install ssh
 cd gcserver
 npm install
 echo Installation finished...
