@@ -3,7 +3,7 @@ const {command} = require(`../../utils/commands`);
 
 function idle(data, lastState){
   console.log('idle')
-  if(lastState.state!=data)
+  if(lastState.state!=data && lastState.state!='')
     exec(`${command('idle',lastState.state)}`)
   lastState.state=''
 }
