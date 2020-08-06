@@ -26,8 +26,8 @@ echo -n "" > .env
 echo SERVER_PORT=$SERVER_PORT >> .env
 echo MASTER_IP=$MASTER_IP >> .env
 
-iptables -I INPUT 1 -i eth0 -p tcp --dport $SERVER_PORT -j ACCEPT
-iptables-save
+sudo iptables -I INPUT 1 -i eth0 -p tcp --dport $SERVER_PORT -j ACCEPT
+sudo iptables-save
 
 # ssh-keygen -f /tmp/gcserver -t rsa -b 4096 -q -N "" -C "$SUDO_USER@$HOSTNAME"
 # ssh-keygen -t rsa -f gcserver
