@@ -10,6 +10,10 @@ List<dynamic> commands = [
   rotate,
   zoom,
   stop,
+  short_north,
+  short_south,
+  short_west,
+  short_east,
   planet,
   flyto,
 ];

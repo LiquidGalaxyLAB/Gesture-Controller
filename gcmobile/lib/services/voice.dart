@@ -48,7 +48,7 @@ class VoiceCommands{
         command = commands[cIndex]['value'];
         print('command=$command');
         str = str.split(cValue)[1].replaceFirst(' ', '');
-        if(command < 9 && command!=0){
+        if(cIndex < 3){
           cOption = findOptions(str, cIndex);
           command = command + cOption;
         }
