@@ -57,7 +57,7 @@ class VoiceCommands{
         socketData = socketData.replaceFirst('%location', str);
         print(socketData);
         print(terminalColor[command] + strings[command] + '\x1B[97m');
-        Socket.send(socketEvent, socketData);
+        Socket().send(socketEvent, socketData);
       }
     }
   }
@@ -65,7 +65,7 @@ class VoiceCommands{
   _onStatus(String status) async{
     print(status);
     if(status=="notListening"){
-      await new Future.delayed(const Duration(milliseconds : 500));
+      await new Future.delayed(const Duration(milliseconds : 300));
       listen();
     }
   }

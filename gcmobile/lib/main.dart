@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:gcmobile/utils/material_black.dart';
 import 'screens/posenet.dart';
 import 'screens/socketio.dart';
 import 'screens/config.dart';
@@ -17,7 +18,7 @@ void main() async {
     cameras = await availableCameras();
     posenet.loadPosenetModel();
     await voice.initialize();
-    await Socket.initialize('192.168.0.190:8080');
+    // await Socket().initialize('192.168.0.190:8080');
   } on CameraException catch(e){
     print('Error: $e.code\nError Message: $e.message');
   }
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Gesture Controller',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: primaryBlack,
       ),
       home: PosenetScreen(cameras),
     );

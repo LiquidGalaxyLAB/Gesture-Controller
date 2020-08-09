@@ -4,32 +4,39 @@ import 'package:flutter_socket_io/socket_io_manager.dart';
 class Socket{
   static SocketIO socket;
   static String domain;
+  static Function optionsCallback;
   static bool state = false;
 
-  static initialize(String address) async{
+  initialize(String address, Function callback) async{
     domain = address;
-    socket = SocketIOManager().createSocketIO('http://' + domain, "/", socketStatusCallback: connectStatus);
+    optionsCallback = callback;
+    socket = SocketIOManager().createSocketIO('http://' + domain, "/", socketStatusCallback: _connectStatus);
     socket.init();
     socket.connect();
   }
 
-  static send(String event, String data){
+  send(String event, String data){
     socket.sendMessage(event, data);
   }
 
-  static close() async{
-    SocketIOManager().destroyAllSocket();
+  close() async{
+    socket.disconnect();
   }
 
-  static connectStatus(status){
-    print('Status => ' + status);
+  _connectStatus(dynamic status){
+    print(status);
     switch(status.toString()){
       case 'connect_error':
         close();
+        state = false;
+        break;
+      case 'disconnect':
+        state = false;
         break;
       case 'connect':
         state = true;
         break;
     }
+    optionsCallback();
   }
 }

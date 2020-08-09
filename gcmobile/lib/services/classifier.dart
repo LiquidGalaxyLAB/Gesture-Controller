@@ -33,7 +33,7 @@ class Classifier{
     String event = sockets[result]['event'];
     String data = sockets[result]['data'];
     print(color + string);
-    Socket.send(event, data);
+    Socket().send(event, data);
   }
 
 }

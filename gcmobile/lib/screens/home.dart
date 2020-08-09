@@ -2,9 +2,6 @@ import 'dart:async';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:gcmobile/screens/config.dart';
-import 'package:gcmobile/screens/posenet.dart';
-import 'package:gcmobile/screens/socketio.dart';
 import 'package:gcmobile/services/voice.dart';
 
 class HomeScreen extends StatelessWidget {
