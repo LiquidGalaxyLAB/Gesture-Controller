@@ -3,11 +3,13 @@ import 'rotate.dart';
 import 'zoom.dart';
 import 'planet.dart';
 import 'flyto.dart';
+import 'stop.dart';
 
 List<dynamic> commands = [
   move,
   rotate,
   zoom,
+  stop,
   planet,
-  flyto
+  flyto,
 ];

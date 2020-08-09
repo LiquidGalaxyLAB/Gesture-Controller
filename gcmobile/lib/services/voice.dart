@@ -46,8 +46,9 @@ class VoiceCommands{
       cValue = command['value'];
       if(!cIndex.isNaN){
         command = commands[cIndex]['value'];
+        print('command=$command');
         str = str.split(cValue)[1].replaceFirst(' ', '');
-        if(command < 9){
+        if(command < 9 && command!=0){
           cOption = findOptions(str, cIndex);
           command = command + cOption;
         }
@@ -72,12 +73,13 @@ class VoiceCommands{
   findCommands(String str){
     for(int i = 0; i < commands.length; i++){
       var c = commands[i];
-      for(String v in c['variations'])
+      for(String v in c['variations']){
         if(str.contains(v))
           return {
             'index': i,
             'value': v
           };
+      }
     }
     return null;
   }
