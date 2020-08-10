@@ -19,8 +19,16 @@ dependencies:
   speech_to_text: 2.3.0
 
 dev_dependencies:
+  flutter_launcher_icons: 0.7.5
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon_white.png"
+  adaptive_icon_foreground: "assets/icon_white.png"
+  adaptive_icon_background: "#000000"
 
 
 flutter:
