@@ -1,76 +1,36 @@
-import 'dart:async';
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:gcmobile/services/voice.dart';
+import 'package:gcmobile/screens/posenet.dart';
+import 'package:gcmobile/screens/transition.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
 
   final List<CameraDescription> cameras;
   HomeScreen(this.cameras);
 
-  VoiceCommands voice = new VoiceCommands();
+  @override
+  _HomeScreenState createState() => _HomeScreenState(cameras);
+}
 
-  voiceInit() async{
-    await voice.initialize();
-    voice.listen();
-    Timer.periodic(Duration(seconds: 2), (timer) {
-      voice.listen();
+class _HomeScreenState extends State<HomeScreen> {
+
+  final List<CameraDescription> cameras;
+  _HomeScreenState(this.cameras);
+
+  bool transition = true;
+
+  updateState() async{
+    await new Future.delayed(const Duration(seconds : 3));
+    setState((){
+      transition = false;
     });
   }
 
   Widget build(BuildContext context){
-    voiceInit();
-    return Scaffold(
-        body: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              Container(
-                width: 200,
-                child: RaisedButton(
-                  child: Text('Start'),
-                  onPressed: () => voice.listen(),
-                ),
-              ),
-              Container(
-                width: 200,
-                child: RaisedButton(
-                  child: Text('Stop'),
-                  onPressed: () => voice.stop(),
-                ),
-              ),
-              Container(
-                width: 200,
-                child: RaisedButton(
-                  child: Text('Status'),
-                  onPressed: () => voice.status(),
-                ),
-              ),
-              // Container(
-              //   width: 200,
-              //   child: RaisedButton(
-              //     child: Text('PoseNet'),
-              //     onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PosenetScreen(cameras))),
-              //   ),
-              // ),
-              // Container(
-              //   width: 200,
-              //   child: RaisedButton(
-              //     child: Text('Controller'),
-              //     onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SocketIoScreen())),
-              //   ),
-              // ),
-              // Container(
-              //   width: 200,
-              //   child: RaisedButton(
-              //     child: Text('Configs'),
-              //     onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigScreen())),
-              //   ),
-              // ),
-            ],
-          ),
-        )
-    );
+    if(transition==true){
+      updateState();
+      return TransitionScreen();
+    }
+    else return PosenetScreen(cameras);
   }
 }

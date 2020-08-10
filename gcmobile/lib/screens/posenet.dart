@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:gcmobile/screens/info.dart';
 import 'dart:math' as math;
 
 import 'package:gcmobile/screens/widgets/camera.dart';
@@ -59,14 +60,34 @@ class _PosenetScreenState extends State<PosenetScreen>{
         children: <Widget>[
           _camera(),
           Positioned(
-            top: 50,
-            child: MaterialButton(
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigScreen())),
-              color: Color.fromRGBO(0, 0, 0, 0.6),
-              textColor: Colors.white,
-              child: Icon(Icons.settings, size: 17),
-              padding: EdgeInsets.all(14),
-              shape: CircleBorder(),
+            child: SafeArea(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: MaterialButton(
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigScreen())),
+                      color: Color.fromRGBO(0, 0, 0, 0.6),
+                      textColor: Colors.white,
+                      child: Icon(Icons.settings, size: 17),
+                      padding: EdgeInsets.all(14),
+                      shape: CircleBorder(),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: MaterialButton(
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => InfoScreen())),
+                      color: Color.fromRGBO(0, 0, 0, 0.6),
+                      textColor: Colors.white,
+                      child: Icon(Icons.info, size: 17),
+                      padding: EdgeInsets.all(14),
+                      shape: CircleBorder(),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           _keypointsRender()

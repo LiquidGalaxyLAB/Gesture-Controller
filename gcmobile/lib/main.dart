@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:gcmobile/screens/home.dart';
 import 'package:gcmobile/utils/material_black.dart';
-import 'screens/posenet.dart';
-import 'screens/socketio.dart';
-import 'screens/config.dart';
-import 'package:gcmobile/services/sockets.dart';
 import 'package:gcmobile/services/posenet.dart';
 import 'package:gcmobile/services/voice.dart';
+
+import 'screens/info.dart';
 
 List<CameraDescription> cameras;
 
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: primaryBlack,
       ),
-      home: PosenetScreen(cameras),
+      home: HomeScreen(cameras),
     );
   }
 }

@@ -33,7 +33,7 @@ flutter_icons:
 
 flutter:
   uses-material-design: true
-
   assets:
-    - assets/mobilenet_v1_1.0_224.tflite
-    - assets/posenet_mv1_075_float_from_checkpoints.tflite
+  - assets/logos.png
+  - assets/mobilenet_v1_1.0_224.tflite
+  - assets/posenet_mv1_075_float_from_checkpoints.tflite
