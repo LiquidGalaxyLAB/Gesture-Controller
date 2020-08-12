@@ -40,7 +40,7 @@ class BndBox extends StatelessWidget {
               height: 12,
               child: Container(
                 child: Text(
-                  "● ${k["part"]}",
+                  "●",
                   style: TextStyle(
                     color: appColor[poseResult],
                     fontSize: 12.0,
