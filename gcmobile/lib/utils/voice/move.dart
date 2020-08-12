@@ -11,7 +11,7 @@ Map<String, dynamic> move = {
   ]
 };
 
-Map<String, dynamic> short_north = {
+Map<String, dynamic> shortNorth = {
   'value': 1,
   'variations': [
     'north',
@@ -19,7 +19,7 @@ Map<String, dynamic> short_north = {
   'options': []
 };
 
-Map<String, dynamic> short_south = {
+Map<String, dynamic> shortSouth = {
   'value': 2,
   'variations': [
     'south',
@@ -27,7 +27,7 @@ Map<String, dynamic> short_south = {
   'options': []
 };
 
-Map<String, dynamic> short_west = {
+Map<String, dynamic> shortWest = {
   'value': 3,
   'variations': [
     'west',
@@ -35,7 +35,7 @@ Map<String, dynamic> short_west = {
   'options': []
 };
 
-Map<String, dynamic> short_east = {
+Map<String, dynamic> shortEast = {
   'value': 4,
   'variations': [
     'east',
