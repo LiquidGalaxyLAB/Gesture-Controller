@@ -41,5 +41,5 @@ sudo iptables-save
 
 if [ ! -f ~/.ssh/id_rsa ] && [ $MASTERIP != 'localhost' ]; then
   ssh-keygen -t rsa -q -N ""
+  sudo cat ~/.ssh/id_rsa.pub | ssh lg@$MASTER_IP 'cat >> .ssh/authorized_keys'
 fi
-sudo cat ~/.ssh/id_rsa.pub | ssh lg@$MASTER_IP 'cat >> .ssh/authorized_keys'
