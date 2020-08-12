@@ -3,13 +3,17 @@
 echo
 echo Gesture Controller Installation
 echo
-echo "Requeriments:"
-echo " * SSH"
-echo " * NodeJs (>= 10.x)"
-echo " * npm (>= 4.x)"
+echo "Want to install major packages? This can affect this packages versions and configurations:"
+echo " - SSH"
+echo " - NodeJs"
+echo " - npm"
+echo -n "y/n: "
+read OP
+if [ $OP = 'y' ]; then
+  sudo snap install node --channel=12/stable --classic
+  sudo apt install ssh
+fi
 echo
-echo [PRESS ENTER TO CONTINUE]
-read
 cd gcserver
 npm install
 echo Installation finished...
