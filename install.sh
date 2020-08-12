@@ -21,6 +21,9 @@ echo
 echo
 echo -n "Server port (8080):"
 read SERVER_PORT
+if [ -z $SERVER_PORT ] || [ $SERVER_PORT = '8080' ]; then
+  SERVER_PORT='8080'
+fi
 echo -n "Master IP (localhost):"
 read MASTER_IP
 if [ -z $MASTER_IP ] || [ $MASTER_IP = 'localhost' ]; then
@@ -36,7 +39,7 @@ sudo iptables-save
 # ssh-keygen -f /tmp/gcserver -t rsa -b 4096 -q -N "" -C "$SUDO_USER@$HOSTNAME"
 # ssh-keygen -t rsa -f gcserver
 
-if [ ! -f ~/.ssh/id_rsa ]; then
+if [ ! -f ~/.ssh/id_rsa ] && [ $MASTERIP != 'localhost' ]; then
   ssh-keygen -t rsa -q -N ""
 fi
 sudo cat ~/.ssh/id_rsa.pub | ssh lg@$MASTER_IP 'cat >> .ssh/authorized_keys'
