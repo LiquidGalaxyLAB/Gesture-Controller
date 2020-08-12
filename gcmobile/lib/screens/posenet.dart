@@ -34,6 +34,7 @@ class _PosenetScreenState extends State<PosenetScreen>{
   setRecognitions(recognitions, imageHeight, imageWidth) async{
     if(recognitions.isNotEmpty){
       data = classifier.flattenInputs(recognitions);
+      print(data);
       data = await classifier.classify(data);
       classifier.handleResult(data);
     }

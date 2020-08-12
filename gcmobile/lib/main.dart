@@ -5,8 +5,6 @@ import 'package:gcmobile/utils/material_black.dart';
 import 'package:gcmobile/services/posenet.dart';
 import 'package:gcmobile/services/voice.dart';
 
-import 'screens/info.dart';
-
 List<CameraDescription> cameras;
 
 void main() async {
