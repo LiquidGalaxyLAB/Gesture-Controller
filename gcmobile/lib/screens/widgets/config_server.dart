@@ -8,19 +8,29 @@ class ConfigServerWidget extends StatefulWidget {
 
 class _ConfigServerWidgetState extends State<ConfigServerWidget> {
   final address = new TextEditingController();
+  final port = new TextEditingController();
   final socket = Socket();
-  bool state;
+  int state;
   String ip;
+  String strPort;
 
   refresh(){
     setState(() {
-        state = Socket.state;
-        ip = Socket.domain;
+        try {
+          state = Socket.state;
+          var arr = Socket.domain.split(':');
+          ip = arr[0];
+          strPort = arr[1] ?? '';
+        } catch (e) {
+          ip = '';
+          strPort = '';
+        }
     });
   }
 
   connect() async {
-    await socket.initialize(address.text, refresh);
+    print('${address.text}:${port.text}');
+    await socket.initialize('${address.text}:${port.text}', refresh);
     Navigator.pop(context);
   }
 
@@ -31,8 +41,15 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
 
   initState(){
     super.initState();
-    state = Socket.state;
-    ip = Socket.domain;
+    try {
+      state = Socket.state;
+      var arr = Socket.domain.split(':');
+      ip = arr[0];
+      strPort = arr[1] ?? '';
+    } catch (e) {
+      ip = '';
+      strPort = '';
+    }
   }
 
   @override
@@ -102,6 +119,35 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
             ),
           ),
           Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text('Port: ',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Colors.black54,
+                      fontSize: 15
+                    )
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    strPort ?? '',
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Colors.black54,
+                      fontSize: 15
+                    )
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.only(top: 30),
             child: Container(
               width: double.infinity,
@@ -124,7 +170,7 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
   }
 
   Widget statusWidget(){
-    if(state == false){
+    if(state == 0){
       return Align(
         alignment: Alignment.center,
         child: Text(
@@ -132,6 +178,19 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
           style: TextStyle(
             fontFamily: 'Poppins',
             color: Colors.black54,
+            fontSize: 15
+          )
+        ),
+      );
+    }
+    else if(state == -1){
+      return Align(
+        alignment: Alignment.center,
+        child: Text(
+          'connect error',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            color: Colors.red,
             fontSize: 15
           )
         ),
@@ -172,9 +231,18 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
                   child: TextField(
                     controller: address,
                     decoration: InputDecoration(
-                      // prefixIcon: Icon(Icons.tap_and_play,),
-                      hintText: '192.168.0.152:8080',
-                      labelText: 'Host'
+                      hintText: '192.168.0.152',
+                      labelText: 'IP'
+                    ),
+                  )
+                ),
+                Container(
+                  width: 300,
+                  child: TextField(
+                    controller: port,
+                    decoration: InputDecoration(
+                      hintText: '8080',
+                      labelText: 'Port'
                     ),
                   )
                 ),
@@ -215,21 +283,6 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
               ],
             ),
           ),
-          // actions: <Widget>[
-          //   FlatButton(
-          //     child: Text('Connect'),
-          //     onPressed: () {
-          //       Navigator.of(context).pop();
-          //     },
-          //   ),
-          //   Spacer(),
-          //   FlatButton(
-          //     child: Text('Disconnect'),
-          //     onPressed: () {
-          //       Navigator.of(context).pop();
-          //     },
-          //   ),
-          // ],
         );
       },
     );

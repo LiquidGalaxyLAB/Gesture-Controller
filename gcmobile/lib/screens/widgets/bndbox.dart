@@ -16,8 +16,8 @@ class BndBox extends StatelessWidget {
       var lists = <Widget>[];
       results.forEach((re) {
         var list = re["keypoints"].values.map<Widget>((k) {
-          var _x = k["x"];
-          var _y = k["y"];
+          var _x = k["y"];
+          var _y = k["x"];
           var scaleW, scaleH, x, y;
 
           if (screenH / screenW > previewH / previewW) {
@@ -34,7 +34,7 @@ class BndBox extends StatelessWidget {
             y = (_y - difH / 2) * scaleH;
           }
             return Positioned(
-              left: x - 6,
+              right: x - 6,
               top: y - 6,
               width: 100,
               height: 12,
@@ -49,7 +49,6 @@ class BndBox extends StatelessWidget {
               ),
             );
         }).toList();
-
         lists..addAll(list);
       });
       return lists;

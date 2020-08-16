@@ -5,7 +5,7 @@ class Socket{
   static SocketIO socket;
   static String domain;
   static Function optionsCallback;
-  static bool state = false;
+  static int state = 0;
 
   initialize(String address, Function callback) async{
     domain = address;
@@ -28,13 +28,13 @@ class Socket{
     switch(status.toString()){
       case 'connect_error':
         close();
-        state = false;
+        state = -1;
         break;
       case 'disconnect':
-        state = false;
+        state = 0;
         break;
       case 'connect':
-        state = true;
+        state = 1;
         break;
     }
     optionsCallback();
