@@ -12,7 +12,7 @@ class Posenet{
     if (!isDetecting['value']) {
       isDetecting['value'] = true;
       int startTime = new DateTime.now().millisecondsSinceEpoch;
-      Tflite.runPoseNetOnFrame(
+      await Tflite.runPoseNetOnFrame(
         bytesList: img.planes.map((plane) {
           return plane.bytes;
         }).toList(),

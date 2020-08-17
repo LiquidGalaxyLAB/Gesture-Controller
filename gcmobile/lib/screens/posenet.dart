@@ -36,15 +36,15 @@ class _PosenetScreenState extends State<PosenetScreen>{
       data = classifier.flattenInputs(recognitions);
       print(data);
       data = await classifier.classify(data);
-      // classifier.handleResult(data);
+      classifier.handleResult(data);
     }
     else
       print('\x1B[97m');
-    setState(() {
-      _imageHeight = imageHeight;
-      _imageWidth = imageWidth;
-      results = recognitions;
-    });
+    // setState(() {
+    //   _imageHeight = imageHeight;
+    //   _imageWidth = imageWidth;
+    //   results = recognitions;
+    // });
   }
 
   @override
