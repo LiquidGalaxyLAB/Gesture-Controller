@@ -15,13 +15,14 @@ import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
 import android.media.AudioManager;
 import android.content.res.AssetFileDescriptor;
+import android.content.Context;
 import org.tensorflow.lite.Interpreter;
 import io.flutter.embedding.android.FlutterActivity;
 
 public class MainActivity extends FlutterActivity {
 
-  private AudioManager mAudioManager;
-  private int mStreamVolume = 0;
+  private AudioManager audioManager;
+
 
   private static final String CHANNEL = "gcmobile";
 
@@ -31,9 +32,8 @@ public class MainActivity extends FlutterActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     //GeneratedPluginRegistrant.registerWith(this);
-    // mAudioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-    // mStreamVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC); // getting system volume into var for later un-muting
-    // mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0); // setting system volume to zero, muting
+    audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+    audioManager.setStreamMute(AudioManager.STREAM_NOTIFICATION, true);
     try{
       tflite = new Interpreter(loadModelFile());
     } catch (Exception e){
