@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   bool transition = true;
 
   updateState() async{
-    await new Future.delayed(const Duration(seconds : 3));
+    await new Future.delayed(const Duration(seconds : 2));
     setState((){
       transition = false;
     });

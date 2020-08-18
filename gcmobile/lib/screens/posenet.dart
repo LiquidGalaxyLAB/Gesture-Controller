@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:gcmobile/screens/info.dart';
 import 'dart:math' as math;
 
 import 'package:gcmobile/screens/widgets/camera.dart';
@@ -11,6 +10,8 @@ import 'package:gcmobile/services/posenet.dart';
 import 'package:gcmobile/services/options.dart';
 import 'package:gcmobile/services/router.dart';
 import 'package:gcmobile/services/voice.dart';
+
+import 'help.dart';
 
 
 class PosenetScreen extends StatefulWidget {
@@ -40,11 +41,6 @@ class _PosenetScreenState extends State<PosenetScreen>{
     }
     else
       print('\x1B[97m');
-    // setState(() {
-    //   _imageHeight = imageHeight;
-    //   _imageWidth = imageWidth;
-    //   results = recognitions;
-    // });
   }
 
   @override
@@ -79,10 +75,10 @@ class _PosenetScreenState extends State<PosenetScreen>{
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: MaterialButton(
-                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => InfoScreen())),
+                      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => HelpScreen())),
                       color: Color.fromRGBO(0, 0, 0, 0.6),
                       textColor: Colors.white,
-                      child: Icon(Icons.info, size: 17),
+                      child: Icon(Icons.help, size: 17),
                       padding: EdgeInsets.all(14),
                       shape: CircleBorder(),
                     ),

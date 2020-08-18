@@ -34,6 +34,7 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
-  - assets/images/logos.png
+  - assets/images/
+  - assets/images/poses/
   - assets/mobilenet_v1_1.0_224.tflite
   - assets/posenet_mv1_075_float_from_checkpoints.tflite
