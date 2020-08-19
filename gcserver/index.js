@@ -21,18 +21,15 @@ app.get('/', (req,res)=>{
 
 socketio.on("connection", connection)
 
-// function openLogos(screen){
-//   if(MASTER_IP != 'localhost'){
-//     exec(`ssh lg@${MASTER_IP} 'export DISPLAY=:0;mkdir gc-assets;ssh lg@${screen} "export DISPLAY=:0;mkdir gc-assets"'`)
-//     exec(`scp ./utils/logos.png lg@${MASTER_IP}:~/gc-assets/`)
-//     exec(`ssh lg@${MASTER_IP} 'export DISPLAY=:0;scp ~/gc-assetsr/logos.png lg@lg${screen}:~/gc-assets/'`)
-//     exec(`ssh lg@${MASTER_IP} 'export DISPLAY=:0;ssh lg@lg${screen} "export DISPLAY=:0; feh -x -g 400x400 ~/gc-assets/logos.png"'`)
-//   } else{
-//     exec(`scp utils/logos.png lg@lg${screen}:~/GestureController/`)
-//     exec(`ssh lg${screen} "export DISPLAY=:0;feh -x -g 400x400 ~GestureController/logos.png"`)
-//   }
-// }
+function openLogos(screen){
+  if(MASTER_IP == 'localhost'){
+    exec(`ssh lg@lg${screen} mkdir gc-assets`)
+    exec(`scp utils/logos.png lg@lg${screen}:~/gc-assets/`)
+    exec(`ssh lg${screen} "export DISPLAY=:0;feh -x -g 400x400 ~GestureController/logos.png"`)
+  }
+}
 
 http.listen(port,() => {
   console.log(`GC Server listening on port ${port}`)
+  openLogos(2)
 })
