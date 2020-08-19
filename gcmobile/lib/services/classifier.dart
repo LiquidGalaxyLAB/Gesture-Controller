@@ -45,6 +45,7 @@ class Classifier{
     String string = strings[result];
     String event = sockets[result]['event'];
     String data = sockets[result]['data'];
+    data = data.replaceFirst('%o', 'P');
     print(color + string);
     Socket().send(event, data);
   }

@@ -52,9 +52,10 @@ class VoiceCommands{
           cOption = findOptions(str, cIndex);
           command = command + cOption;
         }
-        socketEvent = sockets[command]['event'];
         socketData = sockets[command]['data'];
+        socketEvent = sockets[command]['event'];
         socketData = socketData.replaceFirst('%location', str);
+        socketData = socketData.replaceFirst('%o', 'V');
         print(socketData);
         print(terminalColor[command] + strings[command] + '\x1B[97m');
         Socket().send(socketEvent, socketData);

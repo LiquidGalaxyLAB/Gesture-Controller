@@ -43,15 +43,15 @@ Map<int, Color> appColor = {
 };
 
 Map<int, dynamic> sockets = {
-  0: {'event':'idle','data':"{}"},
-  1: {'event':'move','data':"{'direction':'N','value':'1'}"},
-  2: {'event':'move','data':"{'direction':'S','value':'1'}"},
-  3: {'event':'move','data':"{'direction':'W','value':'1'}"},
-  4: {'event':'move','data':"{'direction':'E','value':'1'}"},
-  5: {'event':'rotate','data':"{'direction':'L','value':'1'}"},
-  6: {'event':'rotate','data':"{'direction':'R','value':'1'}"},
-  7: {'event':'zoom','data':"{'direction':'I','value':'1'}"},
-  8: {'event':'zoom','data':"{'direction':'O','value':'1'}"},
-  9: {'event':'planet','data':"{'direction': '%location'}, 'value: 1'"},
-  10: {'event':'flyto','data':"{'direction': '%location'}, 'value: 1'"}
+  0: {'event':'idle','data':"{'direction':'','value':'%o'}"},
+  1: {'event':'move','data':"{'direction':'N','value':'%o'}"},
+  2: {'event':'move','data':"{'direction':'S','value':'%o'}"},
+  3: {'event':'move','data':"{'direction':'W','value':'%o'}"},
+  4: {'event':'move','data':"{'direction':'E','value':'%o'}"},
+  5: {'event':'rotate','data':"{'direction':'L','value':'%o'}"},
+  6: {'event':'rotate','data':"{'direction':'R','value':'%o'}"},
+  7: {'event':'zoom','data':"{'direction':'I','value':'%o'}"},
+  8: {'event':'zoom','data':"{'direction':'O','value':'%o'}"},
+  9: {'event':'planet','data':"{'direction': '%location', 'value': '%o'}"},
+  10: {'event':'flyto','data':"{'direction': '%location'}, 'value': '%o'}"}
 };
