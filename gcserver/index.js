@@ -29,5 +29,5 @@ function openLogos(screen){
 
 http.listen(port,() => {
   console.log(`GC Server listening on port ${port}`)
-  openLogos(2)
+  openLogos(4)
 })
