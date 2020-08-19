@@ -7,6 +7,7 @@ function rotate(data, laststate){
   if(laststate.state!=key)
     exec(`${command(key, laststate.state)}`)
   laststate.state=key
+  laststate.mode=data.value
 }
 
 module.exports = {

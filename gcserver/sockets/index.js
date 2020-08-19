@@ -8,7 +8,8 @@ const {planet} = require('./events/planet.js')
 const {idle} = require('./events/idle.js')
 
 var lastState = {
-  state: ''
+  pose: '',
+  voice: ''
 }
 
 function connection(userSocket){

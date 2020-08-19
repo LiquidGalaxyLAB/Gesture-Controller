@@ -7,6 +7,7 @@ function move(data, lastState){
   if(lastState.state!=key)
     exec(`${command(key,lastState.state)}`)
   lastState.state=key
+  lastState.mode=data.value
 }
 
 module.exports = {
