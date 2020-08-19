@@ -23,9 +23,7 @@ socketio.on("connection", connection)
 
 function openLogos(screen){
   if(MASTER_IP == 'localhost'){
-    exec(`ssh lg@lg${screen} mkdir gc-assets`)
-    exec(`scp utils/logos.png lg@lg${screen}:~/gc-assets/`)
-    exec(`ssh lg${screen} "export DISPLAY=:0;feh -x -g 400x400 ~GestureController/logos.png"`)
+    exec(`ssh lg@${screen} "export DISPLAY=:0;feh -x -g 400x400 ~/gc-assets/logos.png"`)
   }
 }
 

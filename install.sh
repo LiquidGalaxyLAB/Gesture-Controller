@@ -28,6 +28,9 @@ echo -n "Master IP (localhost):"
 read MASTER_IP
 if [ -z $MASTER_IP ] || [ $MASTER_IP = 'localhost' ]; then
   MASTER_IP='localhost'
+  ssh lg@lg2 -t "sudo apt install feh"
+  ssh lg@lg2 "mkdir -a gc-assets"
+  scp utils/logos.png lg@lg2:~/gc-assets/
 fi
 echo -n "" > .env
 echo SERVER_PORT=$SERVER_PORT >> .env
