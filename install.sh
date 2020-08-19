@@ -39,7 +39,7 @@ sudo iptables-save
 # ssh-keygen -f /tmp/gcserver -t rsa -b 4096 -q -N "" -C "$SUDO_USER@$HOSTNAME"
 # ssh-keygen -t rsa -f gcserver
 
-if [ ! -f ~/.ssh/id_rsa ] && [ $MASTERIP != 'localhost' ]; then
+if [ ! -f ~/.ssh/id_rsa ] && [ $MASTER_IP != 'localhost' ]; then
   ssh-keygen -t rsa -q -N ""
   sudo cat ~/.ssh/id_rsa.pub | ssh lg@$MASTER_IP 'cat >> .ssh/authorized_keys'
 fi
