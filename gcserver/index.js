@@ -23,7 +23,7 @@ socketio.on("connection", connection)
 
 function openLogos(screen){
   if(MASTER_IP == 'localhost'){
-    exec(`ssh lg@lg${screen} "export DISPLAY=:0;feh -x -g 400x400 ~/gc-assets/logos.png"`)
+    exec(`ssh lg@lg${screen} "export DISPLAY=:0;feh -x -g 400x121 ~/gc-assets/logos.png"`)
   }
 }
 
