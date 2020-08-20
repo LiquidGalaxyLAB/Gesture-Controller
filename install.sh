@@ -31,7 +31,7 @@ read MASTER_IP
 THIS_IP=$(hostname -I | cut -d' ' -f1)
 if [ -z $MASTER_IP ] || [ $MASTER_IP = 'localhost' ] || [ $MASTER_IP = $THIS_IP]; then
   MASTER_IP='localhost'
-  echo "Want to display logos (y/n)? "
+  echo -n "Want to display logos (y/n)? "
   read OP
   if [ $OP == 'y' ]; then
     ssh lg@lg$LOGOS_MACHINE -t "sudo apt install feh"
