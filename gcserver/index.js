@@ -7,6 +7,7 @@ const exec = require('child_process').exec;
 
 dotenv.config();
 const port = process.env.SERVER_PORT;
+const logosMachine = process.env.LOGOS_MACHINE;
 
 global.__basedir = __dirname;
 global.MASTER_IP = process.env.MASTER_IP;
@@ -21,13 +22,14 @@ app.get('/', (req,res)=>{
 
 socketio.on("connection", connection)
 
-function openLogos(screen){
+function openLogos(){
   if(MASTER_IP == 'localhost'){
-    exec(`ssh lg@lg${screen} "export DISPLAY=:0;feh -x -g 400x121 ~/gc-assets/logos.png"`)
+    exec(`ssh lg@lg${logosMachine} "export DISPLAY=:0;feh -x -g 400x121 ~/gc-assets/logos.png"`)
   }
 }
 
 http.listen(port,() => {
   console.log(`GC Server listening on port ${port}`)
-  openLogos(4)
+  if(logosMachine!='n')
+    openLogos()
 })
