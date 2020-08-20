@@ -9,7 +9,7 @@ echo " - NodeJs"
 echo " - npm"
 echo -n "y/n: "
 read OP
-if [ $OP = 'y' ]; then
+if [ $OP == 'y' ]; then
   sudo snap install node --channel=12/stable --classic
   sudo apt install ssh
 fi
@@ -42,7 +42,9 @@ sudo iptables-save
 # ssh-keygen -f /tmp/gcserver -t rsa -b 4096 -q -N "" -C "$SUDO_USER@$HOSTNAME"
 # ssh-keygen -t rsa -f gcserver
 
-if [ ! -f ~/.ssh/id_rsa ] && [ $MASTER_IP != 'localhost' ]; then
-  ssh-keygen -t rsa -q -N ""
+if [ $MASTER_IP != 'localhost' ]; then
+  if [ ! -f ~/.ssh/id_rsa ]; then
+    ssh-keygen -t rsa -q -N ""
+  fi
   sudo cat ~/.ssh/id_rsa.pub | ssh lg@$MASTER_IP 'cat >> .ssh/authorized_keys'
 fi
