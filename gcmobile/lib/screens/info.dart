@@ -151,8 +151,9 @@ class InfoScreen extends StatelessWidget{
                 ],
               ),
             ),
+            Spacer(),
             Padding(
-              padding: const EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 45),
               child: LogosWidget(),
             )
           ],
