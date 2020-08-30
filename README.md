@@ -1,5 +1,5 @@
 ## Gesture Controller
-A cheap and easy solution to add a new way to control Liquid Galaxy, the main goal of the project is to add a gesture controller for the platform, totaly based in just a android app and a server to listen the commands.
+A cheap and easy solution to add a new way to control Liquid Galaxy, the main goal of the project is to add a gesture controller for the platform, totally based in just a android app and a server to listen the commands.
 
 ###### Run app:
 To run the app you have two options:
