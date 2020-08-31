@@ -81,7 +81,7 @@ Here how to use the application and some recommendations for a better experience
 
 
 ## :beers: Special Thanks
-Thanks to my main mentor of _Google Summer of Code 2020_, Iván Santos González, and to the local Liquid Galaxy Lab coordinator (Brazil, São Paulo, Sorocaba - Facens university) who helped me the most to get this opportunity and also trained me to accomplish this project, Marc Gonzalez Capdevila.
+Thanks to my main mentor of _Google Summer of Code 2020_, Iván Santos González and the Liquid Galaxy admin Andreu Ibáñez. Also to the local Liquid Galaxy Lab coordinator (Brazil, São Paulo, Sorocaba - Facens university) who helped me the most to get this opportunity and also trained me to accomplish this project, Marc Gonzalez Capdevila.
 
 ## :earth_americas: License
 This software is under the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0)
