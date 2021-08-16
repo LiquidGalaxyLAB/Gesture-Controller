@@ -77,8 +77,8 @@ Here how to use the application and some recommendations for a better experience
 ##### Usage recommendations
 - Make sure that the device is in landscape left mode, with the back camera pointed to the user;
 - The device should be at a height of 90cm from the ground and with a distance of 200cm  between user and device.
-- Check if the user can be clearly identified by the camera, with a good contrast with the background.
-
+- Check if the user can be clearly identified by the camera, with a good contrast with the background (preferably light backgrounds).
+- When you are already connected to Liquid Galaxy, make sure to perform the movements in the application with the terminal closed, otherwise it may interfere with its functioning.
 
 ## :beers: Special Thanks
 Thanks to my main mentor of _Google Summer of Code 2020_, Iván Santos González and the Liquid Galaxy admin Andreu Ibáñez. Also to the local Liquid Galaxy Lab coordinator (Brazil, São Paulo, Sorocaba - Facens university) who helped me the most to get this opportunity and also trained me to accomplish this project, Marc Gonzalez Capdevila.
