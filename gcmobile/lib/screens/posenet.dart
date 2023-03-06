@@ -8,7 +8,7 @@ import 'package:gcmobile/screens/config.dart';
 import 'package:gcmobile/services/classifier.dart';
 import 'package:gcmobile/services/posenet.dart';
 import 'package:gcmobile/services/options.dart';
-import 'package:gcmobile/services/router.dart';
+import 'package:gcmobile/services/router.dart' as router;
 import 'package:gcmobile/services/voice.dart';
 
 import 'help.dart';
@@ -51,7 +51,7 @@ class _PosenetScreenState extends State<PosenetScreen>{
 
   @override
   Widget build(BuildContext context) {
-    Router.state='posenet';
+    router.Router.state='posenet';
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -94,7 +94,7 @@ class _PosenetScreenState extends State<PosenetScreen>{
   }
 
   _camera(){
-    if(Router.state=='posenet')
+    if(router.Router.state=='posenet')
       return Camera(
         widget.cameras,
         setRecognitions,
