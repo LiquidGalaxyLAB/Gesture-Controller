@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
-import 'package:gcmobile/utils/voice/commands.dart';
-import 'package:gcmobile/utils/outputs.dart';
-import 'package:gcmobile/services/sockets.dart';
-import 'package:gcmobile/services/options.dart';
+import '../utils/voice/commands.dart';
+import '../utils/outputs.dart';
+import 'sockets.dart';
+import 'options.dart';
 
 class VoiceCommands{
   static SpeechToText controller = new SpeechToText();

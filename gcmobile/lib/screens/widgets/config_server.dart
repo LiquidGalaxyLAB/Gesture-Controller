@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gcmobile/services/sockets.dart';
+import '../../services/sockets.dart';
 
 class ConfigServerWidget extends StatefulWidget {
   @override
@@ -61,7 +61,7 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
         children: <Widget>[
           Align(
             alignment: Alignment.centerLeft,
-            child: Text('Server Informations',
+            child: Text('Server Information',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
