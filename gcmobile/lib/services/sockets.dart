@@ -16,8 +16,8 @@ class Socket {
     // socket = SocketIOManager().createSocketIO('http://' + domain, "/", socketStatusCallback: _connectStatus);
     // socket.init();
     // socket.connect();
-    socket = IO.io('http://$domain');
-
+    socket = IO.io('http://$domain', IO.OptionBuilder().disableAutoConnect().setTransports(['websocket']).build());
+    socket.connect();
     socket.onConnect((data) {
       state = 1;
       print('state: $state | Connected');
@@ -25,6 +25,7 @@ class Socket {
     });
     socket.onDisconnect((data) {
       state = 0;
+      print('error: ${data.toString()}');
       print('state: $state | Disconnected');
       optionsCallback();
     });
