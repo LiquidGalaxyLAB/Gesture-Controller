@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gcmobile/services/sockets.dart';
 import 'package:gcmobile/screens/widgets/config_server.dart';
 import 'package:gcmobile/screens/widgets/config_options.dart';
-import 'package:gcmobile/services/router.dart';
+import 'package:gcmobile/services/router.dart' as router;
 
 class ConfigScreen extends StatefulWidget {
 
@@ -16,7 +16,7 @@ class _ConfigScreen extends State<ConfigScreen>{
 
   @override
   Widget build(BuildContext context) {
-    Router.state = 'config';
+    router.Router.state = 'config';
     address.text = Socket.domain;
     return Scaffold(
       body: SafeArea(

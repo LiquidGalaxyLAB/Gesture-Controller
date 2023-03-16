@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart';
-import 'package:gcmobile/utils/outputs.dart';
-import 'package:gcmobile/services/sockets.dart';
+import '../utils/outputs.dart';
+import 'sockets.dart';
 
 class Classifier{
 
