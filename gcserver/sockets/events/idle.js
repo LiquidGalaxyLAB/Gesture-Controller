@@ -1,15 +1,15 @@
 const exec = require('child_process').exec;
-const {command} = require(`../../utils/commands`);
 
-function idle(data, lastState){
-  console.log(data)
-  console.log('idle')
-  if(lastState.state!=data && lastState.state!='' && (lastState.mode=='P' || lastState.mode == data.value))
-    exec(`${command('idle',lastState.state)}`)
-  if(lastState.mode == 'P' || data.value == 'V'){
-    lastState.state=''
-    lastState.mode=data.value
+function idle(data, lastState) {
+  console.log('data:', data)
+  console.log('lastState', lastState.state)
+  
+  if (lastState.state == 'idle') {
+    return
   }
+  
+  exec(`xdotool windowfocus $(xdotool search --name "Google Earth Pro") keyup ${lastState.state}`)
+  lastState.state = 'idle'
 }
 
 module.exports = {

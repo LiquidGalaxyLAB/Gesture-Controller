@@ -8,12 +8,10 @@ const {planet} = require('./events/planet.js')
 const {idle} = require('./events/idle.js')
 
 var lastState = {
-  pose: '',
-  voice: ''
+  state: 'idle'
 }
 
 function connection(userSocket){
-
   console.log("Client connected!")
   userSocket.on("move", (data) => move(data, lastState))
   userSocket.on("rotate", (data) => rotate(data, lastState))
