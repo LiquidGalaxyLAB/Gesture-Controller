@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gcmobile/services/sockets.dart';
+import '../../services/sockets.dart';
 
 class ConfigServerWidget extends StatefulWidget {
   @override
@@ -61,7 +61,7 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
         children: <Widget>[
           Align(
             alignment: Alignment.centerLeft,
-            child: Text('Server Informations',
+            child: Text('Server Information',
               style: TextStyle(
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w600,
@@ -152,7 +152,7 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
             child: Container(
               width: double.infinity,
               height: 28,
-              child: OutlineButton(
+              child: OutlinedButton(
                 onPressed: () => _showMyDialog(),
                 child: Text('EDIT',
                   style: TextStyle(
@@ -253,7 +253,7 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
                     Container(
                       padding: EdgeInsets.only(top:20),
                       width: 110,
-                      child: FlatButton(
+                      child: TextButton(
                         onPressed: () => disconnect(),
                         child: Text(
                           'Disconnect',
@@ -267,7 +267,7 @@ class _ConfigServerWidgetState extends State<ConfigServerWidget> {
                     Container(
                       padding: EdgeInsets.only(top:20),
                       width: 110,
-                      child: FlatButton(
+                      child: TextButton(
                         onPressed: () => connect(),
                         child: Text(
                           'Connect',

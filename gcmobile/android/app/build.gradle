@@ -22,10 +22,11 @@ if (flutterVersionName == null) {
 }
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 33
 
     lintOptions {
         disable 'InvalidPackage'
@@ -34,17 +35,24 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.gcmobile"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion 30
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
+    signingConfigs {
+        release {
+            storeFile file("C:/Users/Sidharth Mudgil/Desktop/gcappupload-keystore.jks")
+            storePassword "123456"
+            keyPassword "123456"
+            keyAlias "upload"
+        }
+    }
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -55,7 +63,8 @@ android {
 }
 
 dependencies {
-  implementation 'org.tensorflow:tensorflow-lite:+'
+    implementation 'org.tensorflow:tensorflow-lite:+'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 flutter {
